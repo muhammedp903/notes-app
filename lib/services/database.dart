@@ -17,7 +17,7 @@ class Database {
     });
   }
 
-  /// REPLACE ABOVE WITH THIS !!!!!!!! ---->>
+  // TODO: REPLACE ABOVE WITH THIS !!!!!!!! ---->>
   Future newNote(String title, String body) async {
     return await noteCollection.add({
       "uid": uid,
