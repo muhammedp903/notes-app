@@ -16,11 +16,9 @@ class NoteTile extends StatelessWidget {
 
           margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
           child: ListTile(
-            // onTap: ,
-            // leading: Padding(
-            //   padding: const EdgeInsets.fromLTRB(0,1,0,0),
-            //   child: Icon(Icons.note, color: Colors.blue,size: 35,),
-            // ),
+            onTap: (){
+              // TODO: Open details dialog
+            },
             title: Text(
               note.title,
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -30,9 +28,10 @@ class NoteTile extends StatelessWidget {
               // style: TextStyle(color: Colors.black),
             ),
             trailing: IconButton(
+              // TODO: Edit button
               icon: Icon(Icons.delete),
               // color: Colors.grey[600],
-              onPressed: () => Database().deleteNote(note.title),
+              onPressed: () => Database().deleteNote(note.docId),
             ),
           ),
         ));

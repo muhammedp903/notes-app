@@ -9,15 +9,7 @@ class Database {
   final CollectionReference noteCollection =
       Firestore.instance.collection("notes");
 
-  Future addNote(String title, String body) async {
-    return await noteCollection.document(title).setData({
-      "uid": uid,
-      "title": title,
-      "body": body,
-    });
-  }
 
-  // TODO: REPLACE ABOVE WITH THIS !!!!!!!! ---->>
   Future newNote(String title, String body) async {
     return await noteCollection.add({
       "uid": uid,
@@ -26,8 +18,8 @@ class Database {
     });
   }
 
-  Future deleteNote(String title) async {
-    return await noteCollection.document(title).delete();
+  Future deleteNote(String id) async {
+    return await noteCollection.document(id).delete();
   }
 
   List<Note> _noteListFromSnapshot(QuerySnapshot snapshot) {
@@ -35,6 +27,7 @@ class Database {
       return doc.data["uid"] == uid.toString()
           ? Note(
               uid: doc.data["uid"],
+              docId: doc.documentID,
               title: doc.data["title"] ?? "",
               body: doc.data["body"] ?? "",
             )

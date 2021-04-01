@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:notes/models/constants.dart';
 import 'package:notes/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -58,7 +57,7 @@ class _NewNotePageState extends State<NewNotePage> {
                       ),
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
-                          await Database(uid: user.uid).addNote(
+                          await Database(uid: user.uid).newNote(
                             _currentTitle ?? "",
                             _currentBody,
                           );

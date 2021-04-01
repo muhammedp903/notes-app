@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:notes/services/database.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
-import 'new_note_unused.dart';
 import 'package:notes/models/note.dart';
 import 'new_note_page.dart';
 import 'note_list.dart';
@@ -54,16 +53,17 @@ class Home extends StatelessWidget {
         body: Scaffold(
           // backgroundColor: Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
+            padding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                NoteList(),
                 Text(
-                  "Note titles must be unique\nSigned in as ${user.email}",
+                  "Signed in as ${user.email}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold),
-                )
+                ),
+                SizedBox(height: 2,),
+                NoteList(),
               ],
             ),
           ),
