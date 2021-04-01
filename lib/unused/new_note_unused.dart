@@ -18,6 +18,7 @@ class _NewNoteState extends State<NewNote> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<FirebaseUser>(context);
+
     return Form(
         key: _formKey,
         child: Column(children: <Widget>[
@@ -55,7 +56,7 @@ class _NewNoteState extends State<NewNote> {
             ),
             onPressed: () async {
               if (_formKey.currentState.validate()){
-                await Database(uid: user.uid).addNote(
+                await Database(uid: user.uid).newNote(
                     _currentTitle ?? "",
                     _currentBody ,
                 );
