@@ -18,6 +18,7 @@ class _NoteListState extends State<NoteList> {
 
     //go through the list and create a tile for each note
     return ListView.builder(
+      physics: BouncingScrollPhysics(),
       shrinkWrap: true,
       itemCount: notes.length,
       itemBuilder: (context, index) {
