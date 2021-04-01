@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes/models/constants.dart';
 import 'package:notes/services/auth.dart';
-import 'file:///C:/Users/muham/AndroidStudioProjects/notes/lib/models/constants.dart';
 import 'package:notes/screens/loading.dart';
 
 class Register extends StatefulWidget {
