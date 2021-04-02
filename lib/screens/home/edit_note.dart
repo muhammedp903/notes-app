@@ -47,7 +47,7 @@ class _EditNoteState extends State<EditNote> {
           TextButton(
             onPressed: () async {
               if (_formKey.currentState.validate()) {
-                await Database().editNote(
+                await Database(uid: widget.note.uid).editNote(
                   widget.note.docId,
                   _currentTitle ?? widget.note.title,
                   _currentBody ?? widget.note.body,

@@ -20,7 +20,7 @@ class NoteTile extends StatelessWidget {
             icon: Icon(Icons.delete),
             label: Text("Delete"),
             onPressed: () {
-              Database().deleteNote(note.docId);
+              Database(uid: note.uid).deleteNote(note.docId);
               Navigator.pop(context);
             }
           ),
