@@ -1,14 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:notes/models/note.dart';
 import 'package:notes/services/database.dart';
-import 'package:provider/provider.dart';
 
-class NewNote extends StatefulWidget {
+class EditNote extends StatefulWidget {
+  final Note note;
+  EditNote({this.note});
+
   @override
-  _NewNoteState createState() => _NewNoteState();
+  _EditNoteState createState() => _EditNoteState();
 }
 
-class _NewNoteState extends State<NewNote> {
+class _EditNoteState extends State<EditNote> {
   final _formKey = GlobalKey<FormState>();
 
   String _currentTitle;
@@ -31,11 +33,9 @@ class _NewNoteState extends State<NewNote> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<FirebaseUser>(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Note"),
+        title: Text("Edit Note"),
         elevation: 0.0,
         leading: IconButton(
           onPressed: () {
@@ -47,9 +47,10 @@ class _NewNoteState extends State<NewNote> {
           TextButton(
             onPressed: () async {
               if (_formKey.currentState.validate()) {
-                await Database(uid: user.uid).newNote(
-                  _currentTitle ?? "",
-                  _currentBody,
+                await Database().editNote(
+                  widget.note.docId,
+                  _currentTitle ?? widget.note.title,
+                  _currentBody ?? widget.note.body,
                 );
                 Navigator.pop(context);
               }
@@ -69,7 +70,7 @@ class _NewNoteState extends State<NewNote> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   TextFormField(
-                    initialValue: "",
+                    initialValue: widget.note.title,
                     maxLines: 1,
                     autofocus: true,
                     textCapitalization: TextCapitalization.words,
@@ -79,12 +80,12 @@ class _NewNoteState extends State<NewNote> {
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none),
                     validator: (val) =>
-                        val.isEmpty ? "Please enter a title" : null,
+                    val.isEmpty ? "Please enter a title" : null,
                     onChanged: (val) => setState(() => _currentTitle = val),
                     onEditingComplete: () => myFocusNode.requestFocus(),
                   ),
                   TextFormField(
-                    initialValue: "",
+                    initialValue: widget.note.body,
                     focusNode: myFocusNode,
                     textCapitalization: TextCapitalization.sentences,
                     style: TextStyle(fontSize: 19),
@@ -95,7 +96,7 @@ class _NewNoteState extends State<NewNote> {
                     maxLines: 10,
                     minLines: 1,
                     validator: (val) =>
-                        val.isEmpty ? "Please enter some text" : null,
+                    val.isEmpty ? "Please enter some text" : null,
                     onChanged: (val) => setState(() => _currentBody = val),
                   ),
                 ]),
