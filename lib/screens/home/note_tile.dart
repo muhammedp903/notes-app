@@ -19,7 +19,10 @@ class NoteTile extends StatelessWidget {
           TextButton.icon(
             icon: Icon(Icons.delete),
             label: Text("Delete"),
-            onPressed: () => Database().deleteNote(note.docId),
+            onPressed: () {
+              Database().deleteNote(note.docId);
+              Navigator.pop(context);
+            }
           ),
           TextButton.icon(
               label: Text("Edit"),
