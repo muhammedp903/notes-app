@@ -22,6 +22,13 @@ class Database {
     return await noteCollection.document(id).delete();
   }
 
+  Future editNote(String id, String title, String body)async{
+    return await noteCollection.document(id).updateData({
+      "title": title,
+      "body": body,
+    });
+  }
+
   List<Note> _noteListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return doc.data["uid"] == uid.toString()
