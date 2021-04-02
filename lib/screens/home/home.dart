@@ -4,7 +4,7 @@ import 'package:notes/services/database.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
 import 'package:notes/models/note.dart';
-import 'new_note_page.dart';
+import 'new_note.dart';
 import 'note_list.dart';
 
 class Home extends StatelessWidget {
@@ -14,25 +14,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<FirebaseUser>(context);
-    final height = (MediaQuery.of(context).size.height * 0.9);
-    //open the new note page
-    void showNewNote() {
-      showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (context) {
-            return Container(
-              height: height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16)),
-                  ),
-              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 0),
-              child: NewNotePage(),
-            );
-          });
-    }
 
     return StreamProvider<List<Note>>.value(
       value: Database(uid: user.uid).notes,
@@ -41,7 +22,7 @@ class Home extends StatelessWidget {
           title: Text("Notes"),
           elevation: 0.0,
           actions: <Widget>[
-            FlatButton.icon(
+            TextButton.icon(
               icon: Icon(Icons.person),
               onPressed: () async {
                 await _auth.signOut();
@@ -51,30 +32,29 @@ class Home extends StatelessWidget {
           ],
         ),
         body: Scaffold(
-          // backgroundColor: Colors.white,
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Signed in as ${user.email}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+          body: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 18, 20, 0),
+                child: Text(
+                  "NOTES \u2022 ${user.email.toUpperCase()}",
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12, letterSpacing: 0.3),
                 ),
-                SizedBox(height: 2,),
-                NoteList(),
-              ],
-            ),
+              ),
+              Divider(
+                height: 30,
+                color: Colors.grey[600],
+              ),
+              NoteList(),
+              SizedBox(height: 60,)
+            ],
           ),
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.blue,
-              // foregroundColor: Colors.white,
-              child: Icon(Icons.add),
-              onPressed: () => showNewNote(),
-            ),
+
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            child: Icon(Icons.add),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>NewNote())),
           ),
         ),
       ),
