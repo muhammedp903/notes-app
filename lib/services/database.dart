@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:notes/models/note.dart';
 
 class Database {
 
   final String uid;
-  Database({this.uid});
+  Database({@required this.uid});
 
   final CollectionReference noteCollection =
       Firestore.instance.collection("users");
@@ -41,7 +42,7 @@ class Database {
   }
 
   Stream<List<Note>> get notes {
-    print(noteCollection.document(uid).collection("notes").snapshots().map(_noteListFromSnapshot));
+    // print(noteCollection.document(uid).collection("notes").snapshots().map(_noteListFromSnapshot));
     return noteCollection.document(uid).collection("notes").snapshots().map(_noteListFromSnapshot);
   }
 }
