@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:notes/models/note.dart';
 
 class Database {
 
   final String uid;
-  Database({this.uid});
+  Database({@required this.uid});
 
   final CollectionReference noteCollection =
-      Firestore.instance.collection("notes");
+      Firestore.instance.collection("users");
 
 
   Future newNote(String title, String body) async {
-    return await noteCollection.add({
+    return await noteCollection.document(uid).collection("notes").add({
       "uid": uid,
       "title": title,
       "body": body,
@@ -19,11 +20,11 @@ class Database {
   }
 
   Future deleteNote(String id) async {
-    return await noteCollection.document(id).delete();
+    return await noteCollection.document(uid).collection("notes").document(id).delete();
   }
 
   Future editNote(String id, String title, String body)async{
-    return await noteCollection.document(id).updateData({
+    return await noteCollection.document(uid).collection("notes").document(id).updateData({
       "title": title,
       "body": body,
     });
@@ -31,19 +32,17 @@ class Database {
 
   List<Note> _noteListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-      return doc.data["uid"] == uid.toString()
-          ? Note(
+      return Note(
               uid: doc.data["uid"],
               docId: doc.documentID,
               title: doc.data["title"] ?? "",
               body: doc.data["body"] ?? "",
-            )
-          : null;
+            );
     }).toList();
   }
 
   Stream<List<Note>> get notes {
-    print(noteCollection.snapshots().map(_noteListFromSnapshot));
-    return noteCollection.snapshots().map(_noteListFromSnapshot);
+    // print(noteCollection.document(uid).collection("notes").snapshots().map(_noteListFromSnapshot));
+    return noteCollection.document(uid).collection("notes").snapshots().map(_noteListFromSnapshot);
   }
 }
