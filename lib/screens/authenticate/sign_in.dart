@@ -43,7 +43,7 @@ class _SignInState extends State<SignIn> {
               elevation: 0.0,
               title: Text("Sign In"),
               actions: <Widget>[
-                FlatButton.icon(
+                TextButton.icon(
                     onPressed: () {
                       widget.toggleView();
                     },

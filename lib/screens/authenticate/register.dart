@@ -44,7 +44,7 @@ class _RegisterState extends State<Register> {
               elevation: 0.0,
               title: Text("Register"),
               actions: <Widget>[
-                FlatButton.icon(
+                TextButton.icon(
                     onPressed: () {
                       widget.toggleView();
                     },
