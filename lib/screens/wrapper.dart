@@ -10,8 +10,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final user = Provider.of<FirebaseUser>(context);
-// return page depending on login status
-//     print (user.uid);
+
     return user != null? SafeArea(child: Home()): SafeArea(child: Authenticate());
   }
 }
