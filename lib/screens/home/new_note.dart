@@ -72,7 +72,7 @@ class _NewNoteState extends State<NewNote> {
                     initialValue: "",
                     maxLines: 1,
                     autofocus: true,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.sentences,
                     style: TextStyle(fontSize: 24),
                     decoration: InputDecoration(
                         hintText: "Title",

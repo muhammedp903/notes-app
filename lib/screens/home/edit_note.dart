@@ -73,7 +73,7 @@ class _EditNoteState extends State<EditNote> {
                     initialValue: widget.note.title,
                     maxLines: 1,
                     autofocus: true,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.sentences,
                     style: TextStyle(fontSize: 24),
                     decoration: InputDecoration(
                         hintText: "Title",
