@@ -57,7 +57,6 @@ class _EditNoteState extends State<EditNote> {
             },
             child: Text(
               "Save",
-              style: TextStyle(color: Colors.white),
             ),
           ),
         ],

@@ -19,8 +19,7 @@ class Home extends StatelessWidget {
       value: Database(uid: user.uid).notes,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Notes"),
-          elevation: 0.0,
+          title: Text("Notes", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),),
           actions: <Widget>[
             TextButton.icon(
               icon: Icon(Icons.person),
@@ -44,6 +43,7 @@ class Home extends StatelessWidget {
               Divider(
                 height: 30,
                 color: Colors.grey[600],
+                thickness: 0.2,
               ),
               NoteList(),
               SizedBox(height: 60,)

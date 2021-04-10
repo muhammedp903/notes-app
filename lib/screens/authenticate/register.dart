@@ -42,7 +42,7 @@ class _RegisterState extends State<Register> {
             // backgroundColor: Colors.white,
             appBar: AppBar(
               elevation: 0.0,
-              title: Text("Register"),
+              title: Text("Register", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),),
               actions: <Widget>[
                 TextButton.icon(
                     onPressed: () {
