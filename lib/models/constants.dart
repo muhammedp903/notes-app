@@ -5,7 +5,7 @@ const textInputDecoration = InputDecoration(
   enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.grey, width: 0.5)),
   focusedBorder:
-      OutlineInputBorder(borderSide: BorderSide(color: Colors.blue, width: 1)),
+      OutlineInputBorder(borderSide: BorderSide(color: Colors.cyan, width: 1)),
 );
 
 const String greetingNote = """

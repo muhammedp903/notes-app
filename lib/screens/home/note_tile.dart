@@ -43,36 +43,41 @@ class NoteTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(top: 8),
-        child: Card(
-          margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-          child: ListTile(
-            onTap: (){
-              showDetails(context);
-            },
-            title: Text(
-              note.title,
-              style: TextStyle(fontWeight: FontWeight.bold),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+        padding: EdgeInsets.only(top: 4),
+        child: Column(
+          children: [
+            ListTile(
+              onTap: (){
+                showDetails(context);
+              },
+              title: Text(
+                note.title,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Text(
+                note.body,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                    visualDensity: VisualDensity(horizontal: -1, vertical: 0),
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> EditNote(note: note,))),
+                  ),
+                ],
+              ),
             ),
-            subtitle: Text(
-              note.body,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            Divider(
+              height: 4,
+              indent: 10,
+              endIndent: 10,
             ),
-
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.edit),
-                  visualDensity: VisualDensity(horizontal: -1, vertical: 0),
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> EditNote(note: note,))),
-                ),
-              ],
-            ),
-          ),
+          ],
         ));
   }
 }
