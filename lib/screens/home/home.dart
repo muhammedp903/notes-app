@@ -54,7 +54,7 @@ class Home extends StatelessWidget {
           ),
 
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.cyan,
             foregroundColor: Colors.white,
             child: Icon(Icons.add),
             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>NewNote())),
