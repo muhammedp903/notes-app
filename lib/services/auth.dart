@@ -32,6 +32,15 @@ class AuthService {
     }
   }
 
+  Future resetPassword(String email)async{
+    try{
+      return await _auth.sendPasswordResetEmail(email: email);
+    }catch(e){
+      print("Error resetting password: ${e.code}");
+      return Future.error(e);
+    }
+  }
+
   Future signOut() async {
     try {
       return await _auth.signOut();
