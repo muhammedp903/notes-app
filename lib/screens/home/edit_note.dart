@@ -44,6 +44,13 @@ class _EditNoteState extends State<EditNote> {
           icon: Icon(Icons.close),
         ),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: (){
+              Database(uid: widget.note.uid).deleteNote(widget.note.docId);
+              Navigator.pop(context);
+            },
+          ),
           TextButton(
             onPressed: () async {
               if (_formKey.currentState.validate()) {
@@ -57,7 +64,6 @@ class _EditNoteState extends State<EditNote> {
             },
             child: Text(
               "Save",
-              style: TextStyle(color: Colors.white),
             ),
           ),
         ],
