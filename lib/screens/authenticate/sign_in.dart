@@ -41,7 +41,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             appBar: AppBar(
               elevation: 0.0,
-              title: Text("Sign In"),
+              title: Text("Sign In", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),),
               actions: <Widget>[
                 TextButton.icon(
                     onPressed: () {

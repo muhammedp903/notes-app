@@ -56,7 +56,6 @@ class _NewNoteState extends State<NewNote> {
             },
             child: Text(
               "Save",
-              style: TextStyle(color: Colors.white),
             ),
           ),
         ],
