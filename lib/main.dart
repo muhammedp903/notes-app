@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
               elevation: 0.0,
             )
         ),
+
         darkTheme: ThemeData(
           brightness: Brightness.dark,
           accentColor: Colors.white,
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.black,
             elevation: 0,
-          )
+          ),
+          dividerColor: Colors.grey
         ),
         home: Wrapper(),
       ),

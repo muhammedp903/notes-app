@@ -45,7 +45,10 @@ class Home extends StatelessWidget {
                 color: Colors.grey[600],
                 thickness: 0.2,
               ),
-              NoteList(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: NoteList(),
+              ),
               SizedBox(height: 60,)
             ],
           ),
