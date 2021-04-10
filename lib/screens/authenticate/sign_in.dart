@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/models/constants.dart';
+import 'package:notes/screens/authenticate/reset_password.dart';
 import 'package:notes/services/auth.dart';
 import 'package:notes/screens/loading.dart';
 
@@ -40,7 +41,6 @@ class _SignInState extends State<SignIn> {
         ? Loading()
         : Scaffold(
             appBar: AppBar(
-              elevation: 0.0,
               title: Text("Sign In", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),),
               actions: <Widget>[
                 TextButton.icon(
@@ -121,6 +121,12 @@ class _SignInState extends State<SignIn> {
                         color: Colors.red,
                         fontSize: 14,
                       ),
+                    ),
+                    TextButton(
+                      child: Text("Reset password",),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword()));
+                      },
                     )
                   ],
                 ),
